@@ -18,7 +18,7 @@
 package methods
 
 import (
-	"github.com/ontio/multisign/methods/multisign"
+	"github.com/siovanus/multisign/methods/multisign"
 )
 
 func init() {

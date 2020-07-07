@@ -20,9 +20,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/ontio/multisign/config"
-	"github.com/ontio/multisign/core"
-	_ "github.com/ontio/multisign/methods"
+	"github.com/siovanus/multisign/config"
+	"github.com/siovanus/multisign/core"
+	_ "github.com/siovanus/multisign/methods"
 )
 
 var (

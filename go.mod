@@ -1,4 +1,4 @@
-module github.com/ontio/multisign
+module github.com/siovanus/multisign
 
 go 1.14
 

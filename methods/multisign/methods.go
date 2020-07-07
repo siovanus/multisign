@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ontio/multisign/common"
-	"github.com/ontio/multisign/config"
+	"github.com/siovanus/multisign/common"
+	"github.com/siovanus/multisign/config"
 	sdk "github.com/ontio/ontology-go-sdk"
 )
 

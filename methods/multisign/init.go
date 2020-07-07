@@ -19,7 +19,7 @@
 package multisign
 
 import (
-	"github.com/ontio/multisign/core"
+	"github.com/siovanus/multisign/core"
 )
 
 func Init() {
