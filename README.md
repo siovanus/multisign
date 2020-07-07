@@ -39,7 +39,7 @@ content of config.json：
 }
 ```
 
-`JsonRpcAddress`：rpc of ontology node，for polaris testnet: http://polaris1.ont.io:20336，http://polaris2.ont.io:20336，http://polaris3.ont.io:20336，http://polaris4.ont.io:20336，for mainnet: http://dappnode1.ont.io:20336，http://dappnode2.ont.io:20336，http://dappnode3.ont.io:20336，http://dappnode4.ont.io:20336。
+`JsonRpcAddress`：rpc of ontology node，for polaris testnet: `http://polaris1.ont.io:20336`，`http://polaris2.ont.io:20336`，`http://polaris3.ont.io:20336`，`http://polaris4.ont.io:20336`，for mainnet: `http://dappnode1.ont.io:20336`，`http://dappnode2.ont.io:20336`，`http://dappnode3.ont.io:20336`，`http://dappnode4.ont.io:20336`。
 
 `WalletPath`: path of wallet file, this wallet is deposit account
 
@@ -72,8 +72,8 @@ list of supported command line:
 
 | command line              | function                                                     |
 | ------------------------- | ------------------------------------------------------------ |
-| ./main -t MakeAuthorizeTxAndSign | read input data from config.json to make authorizeForPeer tx and sign it, write signed tx to tx.txt file |
-| ./main -t Sign | read raw tx from tx.txt and sign it |
-| ./main -t SignAndSend | read raw tx from tx.txt, sign it and send it to ontology network configured in config.json |
+| `./main -t MakeAuthorizeTxAndSign` | read input data from config.json to make authorizeForPeer tx and sign it, write signed tx to tx.txt file |
+| `./main -t Sign` | read raw tx from tx.txt and sign it |
+| `./main -t SignAndSend` | read raw tx from tx.txt, sign it and send it to ontology network configured in config.json |
 
 And now you can run your command and input your password if needed.
