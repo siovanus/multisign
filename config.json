@@ -1,0 +1,8 @@
+{
+  "JsonRpcAddress":"http://polaris2.ont.io:20336",
+  "WalletPath": "wallet.dat",
+  "GasPrice":2500,
+  "GasLimit":20000,
+  "PublicKeyList":["030a34dcb075d144df1f65757b85acaf053395bb47b019970607d2d1cdd222525c"],
+  "PosList":[1]
+}

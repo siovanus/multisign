@@ -1,0 +1,11 @@
+.idea/*
+idea/*
+temp/*
+build/
+*.patch
+*.log
+*.rej
+vendor/*
+*.iml
+wallet.dat
+main
