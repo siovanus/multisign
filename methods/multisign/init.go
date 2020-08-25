@@ -24,6 +24,8 @@ import (
 
 func Init() {
 	core.OntTool.RegMethod("MakeAuthorizeTxAndSign", MakeAuthorizeTxAndSign)
+	core.OntTool.RegMethod("MakeUnAuthorizeTxAndSign", MakeUnAuthorizeTxAndSign)
+	core.OntTool.RegMethod("MakeWithdrawTxAndSign", MakeWithdrawTxAndSign)
 	core.OntTool.RegMethod("Sign", Sign)
 	core.OntTool.RegMethod("SignAndSend", SignAndSend)
 }

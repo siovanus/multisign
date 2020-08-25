@@ -4,12 +4,12 @@ import (
 	"bufio"
 	"encoding/hex"
 	"fmt"
-	"github.com/siovanus/multisign/config"
 	"github.com/ontio/ontology-crypto/keypair"
 	sdk "github.com/ontio/ontology-go-sdk"
 	"github.com/ontio/ontology/core/types"
 	"github.com/ontio/ontology/smartcontract/service/native/governance"
 	"github.com/ontio/ontology/smartcontract/service/native/utils"
+	"github.com/siovanus/multisign/config"
 	"os"
 )
 
@@ -37,6 +37,90 @@ func makeAuthorizeTxAndSign(ontSdk *sdk.OntologySdk, signer *sdk.Account, public
 		PosList:        posList,
 	}
 	method := "authorizeForPeer"
+	contractAddress := utils.GovernanceContractAddress
+	tx, err := ontSdk.Native.NewNativeInvokeTransaction(config.DefConfig.GasPrice, config.DefConfig.GasLimit,
+		OntIDVersion, contractAddress, method, []interface{}{params})
+	if err != nil {
+		fmt.Println("NewNativeInvokeTransaction error:", err)
+		return false
+	}
+	err = ontSdk.MultiSignToTransaction(tx, M, pubKeys, signer)
+	if err != nil {
+		fmt.Println("ontSdk.MultiSignToTransaction error:", err)
+		return false
+	}
+	itx, err := tx.IntoImmutable()
+	if err != nil {
+		fmt.Println("tx.IntoImmutable error:", err)
+		return false
+	}
+	err = writeTxFile(itx.ToArray())
+	if err != nil {
+		fmt.Println("writeTxFile error:", err)
+		return false
+	}
+	return true
+}
+
+func makeUnAuthorizeTxAndSign(ontSdk *sdk.OntologySdk, signer *sdk.Account, publicKeyList []string, posList []uint32) bool {
+	pubKeys, err := findPubKeys(signer.PublicKey)
+	if err != nil {
+		fmt.Println("findPubKeys error:", err)
+		return false
+	}
+	address, err := types.AddressFromMultiPubKeys(pubKeys, 2)
+	if err != nil {
+		fmt.Println("types.AddressFromMultiPubKeys error:", err)
+		return false
+	}
+	params := &governance.AuthorizeForPeerParam{
+		Address:        address,
+		PeerPubkeyList: publicKeyList,
+		PosList:        posList,
+	}
+	method := "unAuthorizeForPeer"
+	contractAddress := utils.GovernanceContractAddress
+	tx, err := ontSdk.Native.NewNativeInvokeTransaction(config.DefConfig.GasPrice, config.DefConfig.GasLimit,
+		OntIDVersion, contractAddress, method, []interface{}{params})
+	if err != nil {
+		fmt.Println("NewNativeInvokeTransaction error:", err)
+		return false
+	}
+	err = ontSdk.MultiSignToTransaction(tx, M, pubKeys, signer)
+	if err != nil {
+		fmt.Println("ontSdk.MultiSignToTransaction error:", err)
+		return false
+	}
+	itx, err := tx.IntoImmutable()
+	if err != nil {
+		fmt.Println("tx.IntoImmutable error:", err)
+		return false
+	}
+	err = writeTxFile(itx.ToArray())
+	if err != nil {
+		fmt.Println("writeTxFile error:", err)
+		return false
+	}
+	return true
+}
+
+func makeWithdrawTxAndSign(ontSdk *sdk.OntologySdk, signer *sdk.Account, publicKeyList []string, posList []uint32) bool {
+	pubKeys, err := findPubKeys(signer.PublicKey)
+	if err != nil {
+		fmt.Println("findPubKeys error:", err)
+		return false
+	}
+	address, err := types.AddressFromMultiPubKeys(pubKeys, 2)
+	if err != nil {
+		fmt.Println("types.AddressFromMultiPubKeys error:", err)
+		return false
+	}
+	params := &governance.WithdrawParam{
+		Address:        address,
+		PeerPubkeyList: publicKeyList,
+		WithdrawList:   posList,
+	}
+	method := "withdraw"
 	contractAddress := utils.GovernanceContractAddress
 	tx, err := ontSdk.Native.NewNativeInvokeTransaction(config.DefConfig.GasPrice, config.DefConfig.GasLimit,
 		OntIDVersion, contractAddress, method, []interface{}{params})

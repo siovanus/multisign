@@ -22,9 +22,9 @@ import (
 	"fmt"
 	"time"
 
+	sdk "github.com/ontio/ontology-go-sdk"
 	"github.com/siovanus/multisign/common"
 	"github.com/siovanus/multisign/config"
-	sdk "github.com/ontio/ontology-go-sdk"
 )
 
 func MakeAuthorizeTxAndSign(ontSdk *sdk.OntologySdk) bool {
@@ -38,6 +38,40 @@ func MakeAuthorizeTxAndSign(ontSdk *sdk.OntologySdk) bool {
 		return false
 	}
 	ok = makeAuthorizeTxAndSign(ontSdk, user, config.DefConfig.PublicKeyList, config.DefConfig.PosList)
+	if !ok {
+		return false
+	}
+	return true
+}
+
+func MakeUnAuthorizeTxAndSign(ontSdk *sdk.OntologySdk) bool {
+	time.Sleep(1 * time.Second)
+	user, ok := common.GetAccountByPassword(ontSdk, config.DefConfig.WalletPath)
+	if !ok {
+		return false
+	}
+	if len(config.DefConfig.PublicKeyList) == 0 || len(config.DefConfig.PosList) == 0 {
+		fmt.Println("PublicKeyList or PosList is not provided")
+		return false
+	}
+	ok = makeUnAuthorizeTxAndSign(ontSdk, user, config.DefConfig.PublicKeyList, config.DefConfig.PosList)
+	if !ok {
+		return false
+	}
+	return true
+}
+
+func MakeWithdrawTxAndSign(ontSdk *sdk.OntologySdk) bool {
+	time.Sleep(1 * time.Second)
+	user, ok := common.GetAccountByPassword(ontSdk, config.DefConfig.WalletPath)
+	if !ok {
+		return false
+	}
+	if len(config.DefConfig.PublicKeyList) == 0 || len(config.DefConfig.PosList) == 0 {
+		fmt.Println("PublicKeyList or PosList is not provided")
+		return false
+	}
+	ok = makeWithdrawTxAndSign(ontSdk, user, config.DefConfig.PublicKeyList, config.DefConfig.PosList)
 	if !ok {
 		return false
 	}

@@ -20,8 +20,8 @@ package core
 
 import (
 	"fmt"
-	"github.com/siovanus/multisign/config"
 	sdk "github.com/ontio/ontology-go-sdk"
+	"github.com/siovanus/multisign/config"
 )
 
 var OntTool = NewOntologyTool()

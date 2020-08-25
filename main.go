@@ -30,8 +30,10 @@ var (
 )
 
 func init() {
-	flag.StringVar(&Method, "t", "", "MakeAuthorizeTxAndSign: read input data from config.json to make authorizeForPeer tx and sign it, write signed tx to tx.txt file \n" +
-		"Sign: read raw tx from tx.txt and sign it \n" +
+	flag.StringVar(&Method, "t", "", "MakeAuthorizeTxAndSign: read input data from config.json to make authorizeForPeer tx and sign it, write signed tx to tx.txt file \n"+
+		"MakeUnAuthorizeTxAndSign: read input data from config.json to make unAuthorizeForPeer tx and sign it, write signed tx to tx.txt file \n"+
+		"MakeWithdrawTxAndSign: read input data from config.json to make withdraw tx and sign it, write signed tx to tx.txt file \n"+
+		"Sign: read raw tx from tx.txt and sign it \n"+
 		"SignAndSend: read raw tx from tx.txt, sign it and send it to ontology network configured in config.json")
 	flag.Parse()
 }

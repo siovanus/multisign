@@ -73,6 +73,8 @@ list of supported command line:
 | command line              | function                                                     |
 | ------------------------- | ------------------------------------------------------------ |
 | `./main -t MakeAuthorizeTxAndSign` | read input data from config.json to make authorizeForPeer tx and sign it, write signed tx to tx.txt file |
+| `./main -t MakeUnAuthorizeTxAndSign` | read input data from config.json to make unAuthorizeForPeer tx and sign it, write signed tx to tx.txt file |
+| `./main -t MakeWithdrawTxAndSign` | read input data from config.json to make withdraw tx and sign it, write signed tx to tx.txt file |
 | `./main -t Sign` | read raw tx from tx.txt and sign it |
 | `./main -t SignAndSend` | read raw tx from tx.txt, sign it and send it to ontology network configured in config.json |
 
